@@ -1,0 +1,42 @@
+{
+  "name": "schema-migrator",
+  "version": "1.0.0",
+  "description": "tools to migrate many schemas",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "test": "mocha -r ts-node/register test/**/*.ts --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/isma90/schema-migrator.git"
+  },
+  "keywords": [
+    "typescript",
+    "mysql"
+  ],
+  "author": "Ismael Leiva",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/isma90/schema-migrator/issues"
+  },
+  "homepage": "https://github.com/isma90/schema-migrator#readme",
+  "devDependencies": {
+    "@types/node": "16.9.0",
+    "chai": "4.3.4",
+    "eslint": "7.32.0",
+    "mocha": "9.1.1",
+    "nodemon": "2.0.12",
+    "nyc": "15.1.0",
+    "prettier": "2.4.0",
+    "rimraf": "3.0.2",
+    "supertest": "6.1.6",
+    "ts-node": "10.2.1",
+    "typescript": "4.4.2"
+  },
+  "dependencies": {
+    "mysql": "2.18.1",
+    "typeorm": "0.2.37",
+    "winston": "3.3.3"
+  }
+}
