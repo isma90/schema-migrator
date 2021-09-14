@@ -8,7 +8,7 @@ export const config = {
       port: Utils.parse(3306, env.FROM_PORT),
       user: env.FROM_USER || '',
       pass: env.FROM_PASS || '',
-      databases: JSON.parse(JSON.stringify(env.FROM_DB)) || [],
+      databases: env.FROM_DB?.split(','),
     },
     to: {
       host: env.TO_HOST || '',

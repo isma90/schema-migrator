@@ -1,5 +1,6 @@
 import { ConnectionManager } from 'typeorm';
 import { IConnection } from '../interface';
+import { env } from 'process';
 
 export class Database {
   public static getConnection(connection: IConnection, database: string){
@@ -10,7 +11,7 @@ export class Database {
       username: connection.user,
       password: connection.pass,
       database,
-      logging: ['query', 'schema', 'info', 'warn', 'error'],
+      logging: env.LOG_LEVEL === 'debug'? ['query', 'schema', 'error', 'warn', 'info', 'log'] : [],
       synchronize: false,
     });
   }
