@@ -2,12 +2,12 @@ import winston from 'winston';
 import { Utils } from './utils';
 import { env } from 'process';
 
-const regexBreackLine = new RegExp(/(\r\n|\n|\r)/gm);
+const regexBreakLine = new RegExp(/(\r\n|\n|\r)/gm);
 const myFormat = winston.format.printf(({ level, message, timestamp, ...metadata }) => {
-  return `{ "time": "${timestamp}", "env":"${env.NODE_ENV}", "level":"${level}", "payload":"${Utils.simpleStringify({
+  return `{ "time": "${timestamp}", "env":"${env.regexBreakLine}", "level":"${level}", "payload":"${Utils.simpleStringify({
     message,
     metadata
-  }).replace(regexBreackLine, ' ')}"}`;
+  }).replace(regexBreakLine, ' ')}"}`;
 });
 
 export const logger = winston.createLogger({
