@@ -5,6 +5,9 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon",
+    "compile": "ts-node build.ts && tsc",
+    "prod": "node dist/index.js",
+    "clean": "rimraf dist",
     "test": "mocha -r ts-node/register test/**/*.ts --exit"
   },
   "repository": {

@@ -17,6 +17,12 @@ LOG_LEVEL=debug // default info
 ENVIRONMENT=LOCAL
 ```
 
+Run local `yarn dev`
+
+Compile with `yarn compile`
+
+Run compile code `yarn prod`
+
 ## Dependency
 
 It is necessary to have the schemas created within the target database.
