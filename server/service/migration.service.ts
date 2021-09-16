@@ -56,11 +56,11 @@ export class MigrationService {
       table.migrated = true;
     } catch (e: any) {
       if (e.code === 'ER_FK_CANNOT_OPEN_PARENT') {
-        const dependency = e.message.match(/\'[a-z]+\'/g)[0].replace(/\'/g, '');
+        const dependency = e.message.match(/'[a-z]+'/g)[0].replace(/'/g, '');
         logger.info(`${table.name} need parent Table ${dependency}`);
         const dependencyTable = tables.find(v => v.name === dependency);
         if (!dependencyTable) {
-          throw 'Parent Table not Found';
+          throw new Error(`Parent Table ${dependency} not Found`);
         }
         logger.info(`Creating ${dependency} parent table`);
         await this.clone(dependencyTable, tables);

@@ -17,5 +17,6 @@ export const logger = winston.createLogger({
     winston.format.prettyPrint(),
     myFormat
   ),
+  level: env.LOG_LEVEL || 'info',
   transports: [new winston.transports.Console()],
 });
