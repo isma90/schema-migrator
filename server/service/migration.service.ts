@@ -27,8 +27,8 @@ export class MigrationService {
           return {
             name: v[`Tables_in_${database}`],
             script: '',
-            migrated: false
-          }
+            migrated: false,
+          };
         });
         await this.cloneTables(tables);
         await this.fromConnection.close();
@@ -41,16 +41,19 @@ export class MigrationService {
 
   private async cloneTables(tables: any[]) {
     logger.debug(tables);
-    for (let table of tables) {
+    for (const table of tables) {
       logger.debug(table);
       table.script = (await this.fromConnection.query(`SHOW CREATE TABLE ${table.name};`))[0]['Create Table'];
     }
-    for (let table of tables) {
+    for (const table of tables) {
       await this.clone(table, tables);
     }
   }
 
-  private async clone(table: { name: string, script: string, migrated: boolean }, tables: { name: string, script: string, migrated: boolean }[]) {
+  private async clone(
+    table: { name: string; script: string; migrated: boolean },
+    tables: { name: string; script: string; migrated: boolean }[]
+  ) {
     try {
       await this.toConnection.query(table.script);
       table.migrated = true;
@@ -58,7 +61,7 @@ export class MigrationService {
       if (e.code === 'ER_FK_CANNOT_OPEN_PARENT') {
         const dependency = e.message.match(/'[a-z]+'/g)[0].replace(/'/g, '');
         logger.info(`${table.name} need parent Table ${dependency}`);
-        const dependencyTable = tables.find(v => v.name === dependency);
+        const dependencyTable = tables.find((v) => v.name === dependency);
         if (!dependencyTable) {
           throw new Error(`Parent Table ${dependency} not Found`);
         }
